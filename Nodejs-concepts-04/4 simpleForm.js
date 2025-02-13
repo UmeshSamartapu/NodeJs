@@ -1,15 +1,20 @@
 const http = require('http');
 const server = http.createServer((req, res) => {
-    res.setHeader('Content-Type','text/html');
-    res.write('<html>');
-    res.write('<Head><title>THIS IS MY WEB PAGE</title></Head>');
+
 
     if(req.url === '/'){
+
+        res.setHeader('Content-Type','text/html');
+        res.write('<html>');
+        res.write('<Head><title>THIS IS MY WEB PAGE</title></Head>');
         res.write('<h1>HOME PAGE</h1>');
+        res.write('<html>');
         return res.end();
+
     }
     else if(req.url === '/form')
         {
+
             res.write('<h1>HOME PAGE</h1>');
             res.write('<form action="submit_form.php" method="post">  ');
             res.write(' <label for="name">Name:</label> ');
@@ -24,13 +29,15 @@ const server = http.createServer((req, res) => {
             res.write(' <br><br> ');
 
             res.write('  <button type="submit">Submit</button>');
-
+            res.write('</form>');
             return res.end();
+
         }
-        
-    res.write('<footer><p1>Thank You</p1></footer>');
-    res.write('</html>');
-    res.end();
+        res.setHeader('Content-Type','text/html');
+        res.write('<html>');
+        res.write('<footer><p1>Thank You</p1></footer>');
+        res.write('</html>');
+        res.end();
 });
 const PORT = 3000;
 server.listen(PORT, () => {
